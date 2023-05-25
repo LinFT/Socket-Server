@@ -14,6 +14,7 @@ logging.basicConfig(format='%(asctime)s: %(message)s', level=logging.INFO,
                     datefmt='%H:%M:%S', force=True)
 
 with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:
+    logging.info('server:: starting...')
     sock.bind((HOST, PORT))
     sock.listen()
     conn, addr = sock.accept()
