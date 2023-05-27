@@ -1,1 +1,9 @@
 [1] https://realpython.com/python-sockets/
+[2] https://realpython.com/python-subprocess/#processes-and-subprocesses
+[3] https://realpython.com/command-line-interfaces-python-argparse/
+[4] https://realpython.com/python-application-layouts/
+[5] https://realpython.com/python-modules-packages/
+[6] https://realpython.com/python-namespace-package/
+[7] https://realpython.com/python-cli-testing/
+[8] https://github.com/kennethreitz/setup.py
+[9] 
