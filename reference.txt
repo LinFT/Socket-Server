@@ -4,4 +4,5 @@
 [4] https://realpython.com/python-application-layouts/
 [5] https://realpython.com/python-modules-packages/
 [6] https://realpython.com/python-namespace-package/
-[7] 
+[7] https://realpython.com/python-cli-testing/
+[8]
