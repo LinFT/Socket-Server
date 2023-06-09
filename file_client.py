@@ -14,5 +14,4 @@ print(client_hdlr)
 client_hdlr.connect()
 client_hdlr.send(data)
 
-while True:
-    client_hdlr.recv()
+client_hdlr.recv()

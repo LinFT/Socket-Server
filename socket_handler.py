@@ -39,15 +39,39 @@ class SocketHandler:
     def recv(self, EOF='\036'):
         chunks = []
         bytes_recved = 0
-        #self.sock.setblocking(False)
-        while True:
-            chunk = self.sock.recv(1024)
-            print(f'Socket:: received {chunk}')
-            if chunk == b'':
-                raise RuntimeError('socket connection broken')
-            chunks.append(chunk)
-            bytes_recved += len(chunk)
         
-        data = b''.join(chunks).decode()
-        return data
+        with ErrorCatcher(sock=self.sock):
+            while True:
+                chunk = self.sock.recv(1024)
+                #print(f'Socket:: received {chunk}')
+                
+                if chunk == b'':
+                    raise RuntimeError('socket connection broken')
+                chunks.append(chunk)
+                bytes_recved += len(chunk)
+            
+            data = b''.join(chunks).decode()
+            return data
+
+class ErrorCatcher:
+    def __init__(self, sock=None, lb_err_msg=False, lb_exit=False):
+        self.sock = sock
+        self.lb_err_msg = lb_err_msg
+        self.lb_exit = lb_exit
+        
+    def __enter__(self):
+        pass
     
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        if self.lb_err_msg:
+            print(f'{exc_type.__name__}:: {exc_val}')
+        
+        if self.sock is not None:
+            self.sock.close()
+        
+        if self.lb_exit:
+            return False
+        else:
+            return True
+
+
